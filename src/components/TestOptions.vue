@@ -1,10 +1,10 @@
 <template>
   <div class="test-options">
     <div class="row">
-      <div class="option col-4 mb-3" v-bind:key="option.id" v-for="option in options">
-        <div class="card" v-on:click="selectOption(option)">
+      <div class="option col-4 mb-3" :key="option.id" v-for="(option, idx) in options">
+        <div class="card" @click="$emit('sel-opt', idx)" :class="{selected: option.selected !== 0}">
           <div class="card-body">
-            {{ option }}
+            {{ option.label }}
           </div>
         </div>
       </div>
@@ -15,12 +15,7 @@
 <script>
 export default {
   name: "TestOptions",
-  props: ["options"],
-  methods: {
-    selectOption(option) {
-      console.log(option)
-    }
-  }
+  props: ["options"]
 }
 </script>
 
@@ -28,6 +23,8 @@ export default {
   .card {
     cursor: pointer;
     height: 100%;
+    border-width: 5px;
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .option:nth-child(odd) .card {
@@ -46,5 +43,10 @@ export default {
 
   .option:nth-child(even) .card:hover {
     background-color: #DBBA3B;
+  }
+
+  .option .selected {
+    border-color: #333;
+    border-style: solid;
   }
 </style>

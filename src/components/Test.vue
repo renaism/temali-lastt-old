@@ -1,7 +1,7 @@
 <template>
   <div class="test">
-    <TestHeader v-bind:type="type" />
-    <TestOptions v-bind:options="options" />
+    <TestHeader :type="type" />
+    <TestOptions :options="options" @sel-opt="$emit('sel-opt', $event)"/>
   </div>
 </template>
 
