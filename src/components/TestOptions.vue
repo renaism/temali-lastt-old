@@ -1,8 +1,8 @@
 <template>
   <div class="test-options">
     <div class="row">
-      <div class="option col-4 mb-3" :key="option.id" v-for="(option, idx) in options">
-        <div class="card" @click="$emit('sel-opt', idx)" :class="{selected: option.selected !== 0}">
+      <div class="option col-4 mb-3" :key="option.id" v-for="option in options.filter(opt => opt.selected === 0 || opt.selected === number)">
+        <div class="card" @click="$emit('sel-opt', option.id)" :class="{selected: option.selected !== 0}">
           <div class="card-body">
             {{ option.label }}
           </div>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "TestOptions",
-  props: ["options"]
+  props: ["number", "options"]
 }
 </script>
 

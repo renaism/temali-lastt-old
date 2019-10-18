@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link> -->
     </div>
     <div class="container">
-      <router-view v-bind:options="options" v-on:sel-opt="selectOption"/>
+      <router-view v-bind="{options: options, selectedCount: selectedCount}" v-on:sel-opt="selectOption"/>
     </div>
   </div>
 </template>
@@ -17,23 +17,30 @@ export default {
       options: [
         {
           label: "Senang bersahabat dan membangun jaringan dengan klien",
-          trait: "AMB",
-          selected: 0
+          trait: "AMB", selected: 0
         },
         {
           label: "Teratur, rapi, segala sesuatunya harus direncanakan",
-          trait: "ADM",
-          selected: 0
+          trait: "ADM", selected: 0
         },
         {
           label: "Suka menganalisis data dan angka. Lebih percaya asumsi jika ada datanya",
-          trait: "ANA",
-          selected: 0
+          trait: "ANA", selected: 0
         },
-      ]
-      //   "Suka mengatur penempatan atau penugasan orang",
-      //   "Dapat merasakan perasaan orang lain tanpa orang tersebut memberitahu",
-      //   "Berani menghadapi orang empat mata, keras kepala, berani mengambil alih situasi",
+        {
+          label: "Suka mengatur penempatan atau penugasan orang",
+          trait: "ARA", selected: 0
+        },
+        {
+          label: "Dapat merasakan perasaan orang lain tanpa orang tersebut memberitahu",
+          trait: "CAR", selected: 0
+        },
+        {
+          label: "Berani menghadapi orang empat mata, keras kepala, berani mengambil alih situasi",
+          trait: "CMD", selected: 0
+        },
+      ],
+      selectedCount: {1: 0, 2: 0, 3: 0, 4: 0}
       //   "Senang mengkomunikasikan sesuatu dengan cara yang mudah dimengerti",
       //   "Punya banyak imajinasi dan ide baik modifikasi dari yang lama maupun baru sama sekali",
       //   "Dapat menterjemahkan ide menjadi sebuah rancangan berkonsep",
@@ -50,9 +57,22 @@ export default {
     }
   },
   methods: {
-    selectOption(idx) {
-      let current = this.options[idx].selected;
-      this.options[idx].selected = current === 0 ? 1 : 0;
+    selectOption(data) {
+      const option = this.options.find(opt => opt.id === data.id)
+      if (option.selected === 0 && this.selectedCount[data.number] < 3) {
+        option.selected = data.number;
+        this.selectedCount[data.number]++;
+      }
+      else if (option.selected !== 0) {
+        option.selected = 0;
+        this.selectedCount[data.number]--;
+      }
+    }
+  },
+  created() {
+    let id = 0
+    for (const option of this.options) {
+      option["id"] = id++;
     }
   }
 }
