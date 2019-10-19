@@ -21,24 +21,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/test/1',
+      path: '/test',
+      name: 'test',
       component: Test,
-      props: { number: 1, type: "sangat kamu banget" }
-    },
-    {
-      path: '/test/2',
-      component: Test,
-      props: { number: 2, type: "lumayan kamu banget" }
-    },
-    {
-      path: '/test/3',
-      component: Test,
-      props: { number: 3, type: "sangat nggak kamu banget" }
-    },
-    {
-      path: '/test/4',
-      component: Test,
-      props: { number: 4, type: "lumayan nggak kamu banget" }
     }
   ]
 })
