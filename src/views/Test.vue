@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import TestHeader from '@/components/TestHeader'
-import TestOptions from '@/components/TestOptions'
+import TestHeader from '@/components/TestHeader';
+import TestOptions from '@/components/TestOptions';
+import axios from 'axios';
 
 export default {
   name: "Test",
@@ -28,32 +29,7 @@ export default {
     return {
       number: 1,
       type: ["", "sangat kamu banget", "lumayan kamu banget", "sangat nggak kamu banget", "lumayan nggak kamu banget"],
-      options: [
-        {
-          label: "Senang bersahabat dan membangun jaringan dengan klien",
-          trait: "AMB", selected: 0
-        },
-        {
-          label: "Teratur, rapi, segala sesuatunya harus direncanakan",
-          trait: "ADM", selected: 0
-        },
-        {
-          label: "Suka menganalisis data dan angka. Lebih percaya asumsi jika ada datanya",
-          trait: "ANA", selected: 0
-        },
-        {
-          label: "Suka mengatur penempatan atau penugasan orang",
-          trait: "ARA", selected: 0
-        },
-        {
-          label: "Dapat merasakan perasaan orang lain tanpa orang tersebut memberitahu",
-          trait: "CAR", selected: 0
-        },
-        {
-          label: "Berani menghadapi orang empat mata, keras kepala, berani mengambil alih situasi",
-          trait: "CMD", selected: 0
-        },
-      ],
+      options: [],
       selectedCount: {1: 0, 2: 0, 3: 0, 4: 0}
     }
   },
@@ -81,10 +57,9 @@ export default {
     }
   },
   created() {
-    let id = 0
-    for (const option of this.options) {
-      option["id"] = id++;
-    }
+    axios.get('http://localhost:8080/options')
+      .then(res => this.options = res.data)
+      .catch(err => console.log(err));
   }
 }
 </script>
