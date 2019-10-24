@@ -6,9 +6,7 @@
     <div class="nav-buttons mb-3">
       <button v-if="number > 1" @click="previousPage()" class="btn-lg btn-primary ml-3 mr-3">&lt;&lt; BACK</button> 
       <button v-if="number < 4 && selectedCount[number] > 0" @click="nextPage()" class="btn-lg btn-primary ml-3 mr-3">NEXT &gt;&gt;</button> 
-      <router-link v-else-if="selectedCount[number] > 0" :to="'/'" replace>
-        <button class="btn-lg btn-primary ml-3 mr-3">FINISH</button> 
-      </router-link>
+      <button v-else-if="selectedCount[number] > 0" @click="submit" class="btn-lg btn-primary ml-3 mr-3">FINISH</button> 
     </div>
     <p v-if="selectedCount[number] < 1">Pilih minimal 5</p>
   </div>
@@ -54,11 +52,21 @@ export default {
       if (this.number > 1) {
         this.number--;
       }
+    },
+    submit() {
+      let sel = {1: [], 2: [], 3: [], 4: []};
+      this.options.filter(opt => opt.selected != 0).forEach(opt => {
+        sel[opt.selected].push(opt.id)
+      });
+      this.$router.push({name: 'result', params: {selectedOptions: sel}})
     }
   },
   created() {
     axios.get('http://localhost:8080/options')
-      .then(res => this.options = res.data)
+      .then(res => {
+        this.options = res.data;
+        this.options.forEach(opt => this.$set(opt, 'selected', 0));
+      })
       .catch(err => console.log(err));
   }
 }

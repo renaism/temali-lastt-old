@@ -24,6 +24,12 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: Test,
+    },
+    {
+      path: '/result',
+      name: 'result',
+      component: () => import('./views/Result.vue'),
+      props: (route) => (route.params)
     }
   ]
 })
