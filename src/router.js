@@ -10,7 +10,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/about',
@@ -24,12 +27,18 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: Test,
+      meta: {
+        title: 'Test'
+      }
     },
     {
       path: '/result',
       name: 'result',
       component: () => import('./views/Result.vue'),
-      props: (route) => (route.params)
+      props: (route) => (route.params),
+      meta: {
+        title: 'Result'
+      }
     }
   ]
 })
