@@ -13,14 +13,14 @@
       <h3 class="mt-5">Peran-Peran Lemah</h3>
       <hr>
       <div class="row">
-        <div class="col-4 mb-3" :key="item.id" v-for="item in result['very_not_fit']">
-          <h5>{{ item.result }}</h5>
-          <p>{{ item.exp_pos}}</p>
+        <div class="col-6 mb-3" :key="item.id" v-for="item in result['very_not_fit']">
+          <h5 class="mb-3">{{ item.result }}</h5>
+          <p class="text-justify">{{ item.exp_neg}}</p>
         </div>
       </div>
-      <button class="btn-lg btn-success d-block mx-auto my-3">Download PDF</button> 
     </div>
     <Loading v-else/>
+      <button @click="downloadPDF" class="btn-lg btn-success d-block mx-auto my-3">Download PDF</button> 
     <router-link to="/test">
       <button class="btn-lg btn-primary d-block mx-auto my-3">Test Lagi</button> 
     </router-link>
@@ -41,6 +41,38 @@ export default {
   data () {
     return {
       result: {}
+    }
+  },
+  methods: {
+    downloadPDF() {
+      axios.post('http://localhost:8080/result/pdf', {
+        selectedOptions: this.selectedOptions
+      }, { responseType: 'blob' })
+      .then(res => {
+        const pdf = new Blob(
+          [res.data],
+          {type: 'application/pdf'}
+        );
+        
+        // For IE
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(newBlob);
+          return;
+        }
+
+        // Other browsers
+        const fileURL = URL.createObjectURL(pdf);
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.download = 'Temali Hasil Light Assessment.pdf';
+        link.click();
+
+        // For Firefox
+        setTimeout(function() {
+          window.URL.revokeObjectURL(fileURL);
+        }, 100);
+      })
+      .catch(err => console.log(err));
     }
   },
   created () {
