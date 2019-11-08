@@ -28,6 +28,7 @@ export default {
     height: 100%;
     border-width: 5px;
     border-color: rgba(0, 0, 0, 0);
+    font-weight: bolder;
   }
 
   .option:nth-child(odd) .card {

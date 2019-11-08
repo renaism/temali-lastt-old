@@ -1,5 +1,9 @@
 <template>
+  <div>
     <a href="http://temali.space/">
-        <img src="@/assets/logo.png" alt="Temali Logo">
+      <img src="@/assets/logo.png" alt="Temali Logo" />
     </a>
+    <h3 class="font-weight-bold">Light Assessment Test</h3>
+    <hr />
+  </div>
 </template>

@@ -1,7 +1,5 @@
 <template>
   <div class="test">
-    <h3 class="font-weight-bold">Light Assessment Test</h3>
-    <hr>
     <TestHeader :number="number" :type="type[number]" />
     <TestOptions v-if="options.length > 0" :number="number" :options="options" @sel-opt="selectOption"/>
     <Loading v-else/>
@@ -9,7 +7,7 @@
     <div class="nav-buttons mb-3">
       <button v-if="number > 1" @click="previousPage()" class="btn-lg btn-primary ml-3 mr-3">&lt;&lt; BACK</button> 
       <button v-if="number < 4 && selectedCount[number] >= minSelect" @click="nextPage()" class="btn-lg btn-primary ml-3 mr-3">NEXT &gt;&gt;</button> 
-      <button v-else-if="selectedCount[number] >= minSelect" @click="submit" class="btn-lg btn-primary ml-3 mr-3">FINISH</button> 
+      <button v-else-if="selectedCount[number] >= minSelect" @click="submit" class="btn-lg btn-primary bg-success ml-3 mr-3">FINISH</button> 
     </div>
     <p v-if="selectedCount[number] < minSelect">Pilih minimal 5</p>
   </div>

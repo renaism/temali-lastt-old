@@ -1,9 +1,9 @@
 <template>
   <div id="result">
     <h1 class="text-center mb-5">Hasil Light Assessment</h1>
-    <h3>Peran-Peran Kuat</h3>
-    <hr>
     <div v-if="Object.keys(result).length > 0">
+      <h3>Peran-Peran Kuat</h3>
+      <hr>
       <div class="row">
         <div class="col-6 mb-3" :key="item.id" v-for="item in result['very_fit']">
           <h5 class="mb-3">{{ item.result }}</h5>
