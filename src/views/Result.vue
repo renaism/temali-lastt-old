@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     downloadPDF() {
-      axios.post('http://localhost:8080/result/pdf', {
+      axios.post(process.env.VUE_APP_API + 'result/pdf', {
         selectedOptions: this.selectedOptions
       }, { responseType: 'blob' })
       .then(res => {
@@ -81,7 +81,7 @@ export default {
       retries: 5,
       retryDelay: axiosRetry.exponentialDelay
     });
-    axios.post('http://localhost:8080/result', {
+    axios.post(process.env.VUE_APP_API + 'result', {
       selectedOptions: this.selectedOptions
     })
     .then(res => {

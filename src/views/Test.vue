@@ -75,7 +75,7 @@ export default {
       retries: 5,
       retryDelay: axiosRetry.exponentialDelay
     });
-    axios.get('http://localhost:8080/options')
+    axios.get(process.env.VUE_APP_API + 'options')
       .then(res => {
         this.options = res.data;
         this.options.forEach(opt => this.$set(opt, 'selected', 0));
