@@ -5,7 +5,7 @@
       <h3>Peran-Peran Kuat</h3>
       <hr>
       <div class="row">
-        <div class="col-6 mb-3" :key="item.id" v-for="item in result['very_fit']">
+        <div class="col-12 col-lg-6 mb-3 mb-3" :key="item.id" v-for="item in result['very_fit']">
           <h5 class="mb-3">{{ item.result }}</h5>
           <p class="text-justify">{{ item.exp_pos}}</p>
         </div>
@@ -13,7 +13,7 @@
       <h3 class="mt-5">Peran-Peran Lemah</h3>
       <hr>
       <div class="row">
-        <div class="col-6 mb-3" :key="item.id" v-for="item in result['very_not_fit']">
+        <div class="col-12 col-lg-6 mb-3" :key="item.id" v-for="item in result['very_not_fit']">
           <h5 class="mb-3">{{ item.result }}</h5>
           <p class="text-justify">{{ item.exp_neg}}</p>
         </div>
