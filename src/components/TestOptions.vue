@@ -3,8 +3,8 @@
     <div v-if="options.length > 0" class="row">
       <div class="option col-12 col-lg-4 mb-3" :key="option.id" v-for="option in options.filter(opt => opt.selected === 0 || opt.selected === number)">
         <div class="card" @click="$emit('sel-opt', option.id)" :class="{selected: option.selected !== 0}">
-          <div class="card-body">
-            {{ option.label }}
+          <div class="card-body d-flex">
+            <p class="noselect m-0 align-self-center">{{ option.label }}</p>
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       number: 1,
-      type: ["", "sangat kamu banget", "lumayan kamu banget", "sangat nggak kamu banget", "lumayan nggak kamu banget"],
+      type: ["", "sangat kamu banget", "lumayan kamu banget", "lumayan nggak kamu banget", "sangat nggak kamu banget"],
       options: [],
       selectedCount: {1: 0, 2: 0, 3: 0, 4: 0},
       minSelect: 5,

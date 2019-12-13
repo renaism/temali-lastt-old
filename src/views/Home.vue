@@ -40,7 +40,7 @@ export default {
 }
 
 #intro {
-  width: 500px;
+  max-width: 500px;
   margin: auto;
 }
 
